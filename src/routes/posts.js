@@ -3,10 +3,10 @@ const router = express.Router();
 
 const postService = require('../services/postService');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 	let data;
 	try {
-		data = postService.getAll();
+		data = await postService.getAll();
 	} catch(err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
 	res.send(data);
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
 	let data;
 	try {
-		data = postService.getById(Number(req.params.id));
+		data = await postService.getById(Number(req.params.id));
 	} catch(err) {
 		res.status(err.status).send({ message: err.message });
 	}
@@ -25,10 +25,10 @@ router.get('/:id', (req, res) => {
 	res.send(data);
 })
 
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
 	let data;
 	try {
-		data = postService.insert(req.body);
+		data = await postService.insert(req.body);
 	} catch(err) {
 		res.status(500).send({ message: err.message });
 	}
