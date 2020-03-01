@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  database:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user_blog
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: test_blog
+    restart: always
+  database-test:
+    container_name: postgres-test
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_DB: database_test
+      POSTGRES_PASSWORD: pwd
+    restart: always

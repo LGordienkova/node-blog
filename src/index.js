@@ -21,3 +21,5 @@ app.use('/api/v0.1/posts', postRoutes);
 app.listen(port, () => {
 	console.log(`server ready on ${port} port`);
 });
+
+module.exports = app;
