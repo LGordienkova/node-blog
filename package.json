@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "start:dev": "nodemon src/index.js",
-    "test": "NODE_ENV=test mocha src/tests/**.js --exit",
+    "test": "NODE_ENV=test mocha tests/**.js --exit",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo:all"
   },
