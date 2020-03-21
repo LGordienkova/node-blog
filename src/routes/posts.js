@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const postService = require('../services/postService');
+const postService = require(`../${process.env.DB_ENV}/services/postService`);
 
 router.get('/', async (req, res) => {
 	let data;
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	let data;
 	try {
-		data = await postService.getById(Number(req.params.id));
+		data = await postService.getById(req.params.id);
 	} catch(err) {
 		res.status(err.status).send({ message: err.message });
 	}
