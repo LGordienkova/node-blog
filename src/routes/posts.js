@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const postService = require(`../${process.env.DB_ENV}/services/postService`);
+const postService = require(`../postgres/services/postService`);
 
 router.get('/', async (req, res) => {
 	let data;
