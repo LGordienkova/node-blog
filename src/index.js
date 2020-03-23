@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const postRoutes = require('./routes/posts.js');
 const mongoose = require('mongoose');
+
+const socketio = require('socket.io');
+
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 
@@ -26,10 +29,19 @@ app.get('/api/v0.1/status', (req, res) => {
 	res.send({ status: 'ok' });
 });
 
-app.use('/api/v0.1/posts', postRoutes);
 
-app.listen(port, () => {
+const expressServer = app.listen(port, () => {
 	console.log(`server ready on ${port} port`);
 });
+
+const io = socketio(expressServer)
+
+io.on('connection', function(socket){
+	socket.emit('messageFromServer');
+	console.log('a user connected');
+});
+
+app.use('/api/v0.1/posts', postRoutes(io));
+
 
 module.exports = app;
